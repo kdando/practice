@@ -1,0 +1,14 @@
+function reverseString(str) {
+  let newStr = "";
+
+
+  for (let x = 0; x < str.length; x++) {
+    newStr += (str[str.length-(x+1)]);
+    console.log(newStr);
+  }
+
+str = newStr;
+  return str;
+}
+
+reverseString("hello");
