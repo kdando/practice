@@ -1,0 +1,15 @@
+function confirmEnding(str, target) {
+const testReg = new RegExp(target + "$", "i");
+if (testReg.test(str) === true) {
+  console.log(true);
+  return true;
+} else {
+  console.log(false);
+  return false;
+}
+
+
+
+}
+
+confirmEnding("Bastian", "n");
