@@ -1,0 +1,16 @@
+function bouncer(arr) {
+
+
+
+
+  function convertToBool(value) {
+    return !!value;
+  }
+
+return arr.filter(convertToBool);
+
+
+
+}
+
+bouncer([7, "ate", "", false, 9]);

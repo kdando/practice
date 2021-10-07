@@ -1,0 +1,19 @@
+function titleCase(str) {
+
+let stringArray = str.toLowerCase().split(" ");
+let newArray = [];
+
+for (let i = 0; i < stringArray.length; i++) {
+
+  newArray.push(stringArray[i].replace(stringArray[i][0], stringArray[i][0].toUpperCase()));
+  
+}
+
+console.log(newArray);
+
+return newArray.join(" ");
+
+
+}
+
+titleCase("I'm a little tea pot");
