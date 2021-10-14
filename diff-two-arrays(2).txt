@@ -1,0 +1,14 @@
+function diffArray(arr1, arr2) {
+
+  let filterArr = 
+arr1.filter( (elem) => arr2.includes(elem) === false)
+.concat
+(arr2.filter( (elem) => arr1.includes(elem) === false));
+
+  console.log(filterArr);
+
+  return filterArr;
+
+}
+
+diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);

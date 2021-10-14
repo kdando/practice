@@ -1,0 +1,15 @@
+// Only change code below this line
+function urlSlug(title) {
+
+  let slugified = title
+  .trim()
+  .toLowerCase()
+  .split(/\s+/)
+  .join("-");
+
+  return slugified;
+
+
+}
+// Only change code above this line
+
