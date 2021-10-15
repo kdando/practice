@@ -1,0 +1,29 @@
+function whatIsInAName(collection, source) {
+  var arr = [];
+  // Only change code below this line
+
+//make a flat array out of the source parameter object//
+  let sourceChecks = Object.entries(source).flat(Infinity);
+
+//setup a function to check every element in 'target' is present in 'array'//
+  const checkerFunc = (arr, target) => target.every(val => arr.includes(val));
+
+//loop through collection//
+  for (let i = 0; i < collection.length; i++) {
+
+    //make a flat array out of each object in collection, in turn//
+    var currentObj = Object.entries(collection[i]).flat(Infinity);
+    //run the checker function on each flattened object//
+    if (checkerFunc(currentObj, sourceChecks) === true) {
+      //if the checkers passes, push the unflattened original object into arr//
+      arr.push(collection[i]);
+    }
+
+  }
+
+console.log(arr);
+  // Only change code above this line
+  return arr;
+}
+
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });

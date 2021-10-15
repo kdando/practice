@@ -1,0 +1,6 @@
+function spinalCase(str) {
+  //splits at whitespace OR an underscore OR a point where what immediately follows is a capital letter//
+  return str.split(/\s|_|(?=[A-Z])/).join("-").toLowerCase();
+}
+
+spinalCase('This Is Spinal Tap');
