@@ -1,0 +1,32 @@
+function fearNotLetter(str) {
+
+//create an alphabet//
+
+  let alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+//get the index position in the alphabet of the first and last letters in the string//
+
+  let firstLetter = alphabet.indexOf(str.charAt(0));
+  let lastLetter = alphabet.indexOf(str.charAt(str.length - 1));
+
+//create an array from the correct alphabet, starting at first and ending at last//
+
+  let trimAlphabet = Array.from(alphabet.slice(firstLetter, lastLetter + 1));
+
+//create an array from the string//
+
+  let strArr = str.split("");
+
+//loop through the correct alphabet, checking each element against the string array. If all are present return undefined, if not return the element//
+
+  for (let i = 0; i < trimAlphabet.length; i++) {
+    if (strArr.includes(trimAlphabet[i]) != true) {
+      return trimAlphabet[i];
+    }
+  }
+
+  return undefined;
+
+}
+
+fearNotLetter("abce");
