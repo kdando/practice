@@ -1,0 +1,31 @@
+function pairElement(str) {
+
+//split input string into an array and make a new empty array for the output//
+  let strArr = str.split("");
+  let retArr = [];
+
+//loop through each element of the input//
+  for (let i = 0; i < strArr.length; i++) {
+
+    //for each letter, create an array of it with its requried partner, then push that to the output array//
+    switch (strArr[i]) {
+      case "G":
+      retArr.push(Array.from(strArr[i].concat("C")));
+      break;
+      case "C":
+      retArr.push(Array.from(strArr[i].concat("G")))
+      break;
+      case "A":
+      retArr.push(Array.from(strArr[i].concat("T")))
+      break;
+      case "T":
+      retArr.push(Array.from(strArr[i].concat("A")))
+      break;
+    }
+  }
+
+  console.log(retArr);
+  return retArr;
+}
+
+pairElement("GCG");

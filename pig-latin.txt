@@ -1,0 +1,24 @@
+function translatePigLatin(str) {
+
+//set up RegExp//
+  let newStr = "";
+  let conCheck = /^[^aeiou]+/;
+
+  //get array of starting consonants//
+  let conToMove = str.match(conCheck);
+
+
+//if array is empty (i.e. word starts with vowels) just add way//
+if (conToMove == null) {
+  newStr = str.concat("way");
+  console.log(str);
+} else {
+  newStr = str.replace(conToMove, "").concat(conToMove).concat("ay");
+  console.log(newStr);
+}
+
+return newStr;
+
+}
+
+translatePigLatin("eight");
