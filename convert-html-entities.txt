@@ -1,0 +1,30 @@
+function convertHTML(str) {
+
+//assign var newStr as the result of:
+//a) finding any of the characters (first arg in .replace)
+//b) replacing them with the result of:
+//c) the return value from the function.
+//the anonymous function sends back the data with return. no need to try and do a replace or splice or anything complicated within that function.
+//.replace(a, b) means find a and replace it with b. if b is a function whatever is found (a) will be replaced by the result of the function (b). so just send data back to it and you have your correct answer.
+
+let newStr = str.replace(/&|<|>|"|'/g, function (elem) {
+  switch(elem) {
+    case "&":
+      return "&amp;";
+      case "<":
+      return "&lt;";
+      case ">":
+      return "&gt;";
+      case '"':
+      return "&quot;";
+      case "'":
+      return "&apos;";
+  }
+});
+
+console.log(newStr);
+
+  return newStr;
+}
+
+convertHTML("Dolce & Gabbana");

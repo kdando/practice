@@ -1,0 +1,21 @@
+function uniteUnique(arr) {
+
+let firstArr = arguments[0];
+
+//assign the first argument (original array) to a variable
+//loop through other arguments and for each:
+//loop through the contents of each argument
+//if firstArr doesn't include each element, push element to firstArr
+
+for (let i = 1; i < arguments.length; i++) {
+  for (let j = 0; j < arguments[i].length; j++) {
+    if (firstArr.includes(arguments[i][j]) === false) {
+      firstArr.push(arguments[i][j]);
+    }
+  }
+}
+
+  return firstArr;
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);

@@ -1,0 +1,29 @@
+function convertHTML(str) {
+
+//another version, which first sets up the callback function outside of .replace//
+//this is cleaner without so much nested stuff going on//
+//WHEN USING A FUNCTION AS CALLBACK (i.e. passing it as argument) YOU DON'T INCLUDE THE (), BECAUSE THE PARAMETER COMES FROM WHATEVER IT'S INSIDE. i.e. here "elem" is the first parameter in .replace//
+
+function replaceChar(elem) {
+  switch(elem) {
+    case "&":
+      return "&amp;";
+      case "<":
+      return "&lt;";
+      case ">":
+      return "&gt;";
+      case '"':
+      return "&quot;";
+      case "'":
+      return "&apos;";
+  }
+};
+
+let newStr = str.replace(/&|<|>|"|'/g, replaceChar);
+
+console.log(newStr);
+
+  return newStr;
+}
+
+convertHTML("Dolce & Gabbana");
