@@ -1,0 +1,31 @@
+function sumFibs(num) {
+
+  //fib numbers are sum of 2 preceeding numbers
+  //set currentNum that will be each fib number
+  //set previousNum to be the preceeding fib number
+  //set finalNum to track the ongoing sum
+  //while the current fib num is less than whatever argument is passed...
+  //we check if currentNum is odd (x % 2 = 0 means even, x % 2 = 1 means odd)...
+  //if it is, add it to finalNum
+  //after that, set next fib number -> the sum of this one plus the last one.
+  //set the previousNum as the current one (current has just been set to curr + prev, so to keep prev we just subtract prev from (new) current)
+  //now, as long as currentNum is less than the argument passed, the WHILE loop will repeat.
+  //after the loop is complete, we return the finalNum
+
+
+  let currentNum = 1;
+  let previousNum = 0;
+  let finalNum = 0;
+
+  while (currentNum <= num) {
+    if (currentNum % 2 == 1) {
+      finalNum += currentNum;
+    }
+    currentNum += previousNum;
+    previousNum = currentNum - previousNum;
+  }
+
+  return finalNum;
+}
+
+sumFibs(4);
