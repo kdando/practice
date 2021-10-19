@@ -1,0 +1,41 @@
+function sumPrimes(num) {
+
+//an array to store primes, a variable for their total//
+
+let sumOfPrimes = 0;
+let primeArr = [];
+
+//a function to check if <number> is prime//
+
+function primeCheck(number) {
+  if (number <= 1) {
+    return false;
+  } else {
+    for (let q = 2; q < number; q++) {
+      if (number % q == 0) {
+         return false;
+      }
+    }
+    return true;
+  }
+};
+
+//loop through each number 1 to (num) and run the primeCheck function on each//
+
+for (let i = 0; i <= num; i++) {
+  if (primeCheck(i) == true) {
+    primeArr.push(i);
+  }
+}
+
+//use reduce to get the sum of primeArr//
+
+sumOfPrimes = primeArr.reduce( (total, current) => {return total + current});
+
+
+console.log(sumOfPrimes);
+
+  return sumOfPrimes;
+}
+
+sumPrimes(977);
