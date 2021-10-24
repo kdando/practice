@@ -1,0 +1,27 @@
+function steamrollArray(arr) {
+
+//create an empty array to store the flattened elements//
+
+let newArr = [];
+
+//create a function that 1) loops through each item in "x" 2) if the item is not an array, push it to newArr 3) if it IS an array, call the WHOLE "flattener" function again with x[i] 4) now, when that function begins the FOR loop, it will start counting the items INSIDE x[i]. This is good for any level of nestedness.//
+
+function flattener(x) {
+  for (let i = 0; i < x.length; i++) {
+    if (Array.isArray(x[i]) === true) {
+      flattener(x[i]);
+    } else {newArr.push(x[i])};
+    }
+  };
+
+//call the flattener function on the arr and return the resulting newArr.//
+
+flattener(arr);
+
+console.log(newArr);
+
+return newArr;
+
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
