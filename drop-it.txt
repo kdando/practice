@@ -1,0 +1,17 @@
+function dropElements(arr, func) {
+
+//if a function is passed as one of the arguments you can call it using index notation on the arguments object//
+
+//we start a loop at [0]. if the item at [0] passes the test (the function argument) we BREAK the loop: we are done. otherwise we remove the item, then because the array has shrunk we reset i to 0 (length - length), then we test this next item (now at [0]) against the function.//
+
+for (let i = 0; i < arr.length; i = arr.length - arr.length) {
+  if (arguments[1](arr[i]) === true) {break;}
+  arr.shift();
+}
+
+console.log(arr)
+
+  return arr;
+}
+
+dropElements([1, 2, 3], function(n) {return n < 3; });

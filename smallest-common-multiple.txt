@@ -1,33 +1,42 @@
 function smallestCommons(arr) {
 
 	//order our array so we know which number is smallest and which is largest
-	var sortedArr = arr.sort( (a, b) => {return a - b}),
-	//the smallest common multiple that leaves no remainder when divided by all the numbers in the rang
-	smallestCommon = 0,
-	//smallest multiple will always be the largest number * 1;
-	multiple = sortedArr[1];
+	let sortedArr = arr.sort( (a, b) => {return a - b})
 
-	while(smallestCommon === 0) {
-		//check all numbers in our range
-		for(var i = sortedArr[0]; i <= sortedArr[1]; i++ ){
-			if(multiple % i !== 0 ){
-				//if we find even one value between our set that is not perfectly divisible, we can skip to the next multiple
+	//we start the lcm at. this is the lowest number that can be divided by everything in range without a remainder//
+	let lcm = 0;
+
+	//we set up a variable to track the current lcm as we move loop through possibilities. we know the lowest common multiple of a range x - y will be AT LEAST y (the highest number) * 1.//
+  let currentLCM = arr[1];
+
+	//the lcm variable is our answer. we set-up a WHILE loop that lasts until lcm is changed from default, 0, to whatever the actual answer is//
+
+	while (lcm === 0) {
+
+		//inside this we do a FOR loop that counts through each number in the range//
+
+		for (let i = sortedArr[0]; i <= sortedArr[1]; i++) {
+
+			//first we check if the highest number in range divides equally into i//
+			if (currentLCM % i != 0) {
+				//if it doesn't, we break out of the for loop, add highest number to currentLCM, and try again. this is all within the WHILE loop which will keep going because lcm is still set to 0//
 				break;
 			}
 
-			//if we make it all the way to the last value (sortedArr[1]) then we know that this multiple was perfectly divisible into all values in the range
-			if(i == sortedArr[1]){
-				smallestCommon = multiple;
+			//second, if the FOR loop goes all the way to the highest number in range, then we know that currentLCM is the true lcm, so we can set it//
+			if (i === sortedArr[1]) {
+				//setting lcm to something other than 0 will stop the WHILE loop.//
+				lcm = currentLCM;
 			}
 
 		}
-
-		//move to the next multiple, we can just add the highest number.
-		multiple += sortedArr[1];
+		currentLCM += sortedArr[1];
 	}
 
-	console.log(smallestCommon);
-	return smallestCommon;
+//when the WHILE loop (etc) is complete, we log and return the lcm variable as our answer//
+
+console.log(lcm);
+return lcm;
 
 //end of function//
 };
