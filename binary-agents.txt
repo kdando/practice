@@ -1,0 +1,23 @@
+function binaryAgent(str) {
+
+//split string into array at each whitespace (the actual spaces in the sentence are coded as binary, the whitespace in the initial string is irrelavent)
+//loop through item in the array and:
+//convert binary to decimal number
+//convert decimal number to character
+//concatenate the character to the ongoing "string"
+//(This is all done in one line for efficiency but the parseInt/String.from/string += parts could all be their own line with intermediary variables too...)
+
+let arr = str.split(" ");
+
+let string = "";
+
+for (let x = 0; x < arr.length; x++) {
+  string += String.fromCharCode(parseInt(arr[x], 2));
+}
+
+console.log(string);
+
+  return string;
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");

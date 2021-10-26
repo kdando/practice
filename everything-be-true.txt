@@ -1,0 +1,15 @@
+function truthCheck(collection, pre) {
+
+//.every runs the function in brackets on every item in "collection"//
+//the bracketed is an arrow function that takes X - which will default to meaning each object in the array - and does a Boolean check on the VALUE of the KEY in the OBJECT: item[pre]//
+//Boolean will convert it to a boolean. if it doesn't exist, we get false. if it exists but is undefined, null etc, we also get false. this is returned for each item//
+//this bracketed function is the test. if every object in "collection" passes, we return true, if not we return false//
+
+
+
+return collection.every( (item) => { return Boolean(item[pre])})
+
+
+}
+
+truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
