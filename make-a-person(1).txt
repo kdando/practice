@@ -1,0 +1,38 @@
+var Person = function(firstAndLast) {
+
+  //declare variable as the passed argument//
+
+  var fullName = firstAndLast;
+
+//return either the whole variable, or the first or second parts of it (via split)//
+
+  this.getFirstName = function() {
+    return fullName.split(" ")[0];
+  };
+
+  this.getLastName = function() {
+    return fullName.split(" ")[1];
+  };
+
+  this.getFullName = function() {
+    return fullName;
+  };
+
+//change the variable using template literal syntax to slot in the new "first" or "last"//
+
+  this.setFirstName = function(first) {
+    fullName = `${first} ${fullName.split(" ")[1]}`;
+  };
+
+  this.setLastName = function(last) {
+    fullName = `${fullName.split(" ")[0]} ${last}`;
+  };
+
+  this.setFullName = function(name) {
+    fullName = name;
+  };
+  
+};
+
+var bob = new Person("Bob Ross");
+bob.getFullName();
