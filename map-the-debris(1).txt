@@ -1,0 +1,38 @@
+function orbitalPeriod(arr) {
+  const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+
+//clone the array: we will change and return this new one//
+
+  let newArr = arr.slice();
+
+    //define a function to do find the period, remove the avgAlt propoerty, and add period as a property//
+    
+    function periodFunc(object) {
+
+    // Calculate the value and assign to a temporary variable//
+    
+    var tempNum = 
+    (2 * Math.PI) * Math.sqrt(Math.pow(earthRadius + object.avgAlt, 3) / GM);
+
+    //Delete the avgAlt property//
+
+    delete object.avgAlt;
+
+    //Add orbitalPeriod property by rounding the temporary variable//
+
+    object.orbitalPeriod = Math.round(tempNum);
+
+  };
+
+    //use forEach to run the function on each object in the array//
+
+  newArr.forEach(periodFunc);
+
+  //return the new array of modified objects//
+
+  return newArr;
+
+}
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
