@@ -1,0 +1,22 @@
+function palindrome(str) {
+
+//remove non alphanumeric chars, trim whitespace, make all the same case, split into array of chars//
+
+const strArr = str.replace(/[\W_]/g, '').trim().toLowerCase().split("");
+
+//create another array. reverse mutates the original so we have to clone it first//
+
+const revArr = strArr.slice().reverse();
+
+//count through original and compare each char to reversed version. if any char doesn't match, return false. otherwise complete the loop and finally return true//
+
+for (let i = 0; i < strArr.length; i++) {
+  if (strArr[i] != revArr[i]) {
+    return false;
+  }
+}
+
+  return true;
+}
+
+palindrome("racecar");
