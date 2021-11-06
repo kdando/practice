@@ -1,0 +1,38 @@
+function convertToRoman(num) {
+
+//create two arrays of base numbers and their Roman equivalents//
+
+let baseArr = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+let romArr = ["I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+
+//define empty string for result//
+
+let str = "";
+
+//create a function that will (A) find the largest "base number" for its arg (B) match the base number to a roman numeral (C) find number of times to repeat roman numeral by dividing the arg by the base number (D) concat the string with the repeated roman numerals, and findally (E) recursively call itself, passing the REMAINDER as the new arg.//
+
+function romaniser(num) {
+    let baseNum = 0;
+    let largest = baseArr.filter( (item) => { return item <= num });
+    baseNum = Math.max(...largest);
+    let pos = baseArr.indexOf(baseNum);
+    let repetitions = Math.floor(num / baseNum);
+    str = str.concat(romArr[pos].repeat(repetitions));
+    let remainder = num - (baseNum * repetitions);
+  if (remainder > 0) {
+  romaniser(remainder);
+    }
+}
+
+//call the above function on the original arg//
+
+romaniser(num);
+
+//log and return the resulting string//
+
+console.log(str);
+ return str;
+
+}
+
+convertToRoman(36);
