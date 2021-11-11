@@ -1,0 +1,16 @@
+// Write your code below
+
+
+const bobsFollowers = ["Jim", "Sue", "Hal", "Mephisto"];
+
+const tinasFollowers = ["Sue", "Herod", "Mephisto"];
+
+const mutualFollowers = [];
+
+for (let i = 0; i < bobsFollowers.length; i++) {
+  for (let p = 0; p < tinasFollowers.length; p++) {
+    if (tinasFollowers[p] === bobsFollowers[i]) {
+      mutualFollowers.push(tinasFollowers[p]);
+    }
+  }
+}
