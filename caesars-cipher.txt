@@ -1,0 +1,38 @@
+function rot13(str) {
+
+  const arr1 = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
+  const arr2 = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+let placement = 0;
+let newChar = "";
+let newStr = "";
+
+  //loop through the original string//
+  for (let i = 0; i < str.length; i++) {
+
+    //check the character is a letter//
+    if (str.charCodeAt(i) > 64 && str.charCodeAt(i) < 91) {
+
+      //check if letter is in array 1 or array 2: add the "opposite" character to the newStr//
+      if (arr1.indexOf(str[i]) >= 0) {
+        placement = arr1.indexOf(str[i]);
+        newChar = arr2[placement];
+        newStr += newChar;
+      } else {
+        placement = arr2.indexOf(str[i]);
+        newChar = arr1[placement];
+        newStr += newChar;
+      }
+
+//if character is not a letter, add it to newStr as-is (this covers puncuation)//
+  } else {
+    newStr += str.charAt(i);
+  }
+
+};
+
+console.log(newStr);
+  return newStr;
+}
+
+rot13("SERR PBQR PNZC");
