@@ -1,0 +1,131 @@
+function checkCashRegister(price, cash, cid) {
+
+//create return object:
+let returnObj = {
+    status: "OPEN",
+    change: cid
+  };
+
+//clone the cid object:
+let cidCopy = cid.map(function(arr) {
+    return arr.slice();
+});
+
+//add value of denomination and number of each  available to the cidCopy//
+for (let p = 0; p < cidCopy.length; p++) {
+  switch(cidCopy[p][0]) {
+    case "PENNY":
+    cidCopy[p].push(0.01);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "NICKEL":
+    cidCopy[p].push(0.05);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "DIME":
+    cidCopy[p].push(0.10);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "QUARTER":
+    cidCopy[p].push(0.25);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "ONE":
+    cidCopy[p].push(1.00);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "FIVE":
+    cidCopy[p].push(5.00);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "TEN":
+    cidCopy[p].push(10.00);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "TWENTY":
+    cidCopy[p].push(20.00);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+    case "ONE HUNDRED":
+    cidCopy[p].push(100.00);
+    cidCopy[p].push( cidCopy[p][1] / cidCopy[p][2] ).toFixed(2);
+    break;
+  }
+}
+
+//toFixed is needed because floating numbers behave weirdly//
+
+//change due:
+  let changeDue = Number((cash - price).toFixed(2));
+  console.log(changeDue);
+
+  //total available in drawer:
+let totalCid = cid.reduce( function(x, y) {
+  return x + y[1];
+  }, 0);
+
+totalCid = Number(totalCid.toFixed(2));
+
+//if change due is more than cid, return insufficient. if identical, return closed//
+if (changeDue > totalCid) {
+  returnObj.status = "INSUFFICIENT FUNDS";
+  returnObj.change = [];
+  return returnObj;
+};
+if (changeDue === totalCid) {
+  returnObj.status = "CLOSED";
+  returnObj.status = cid;
+  return returnObj;
+};
+
+//sort cidCopy highest to lowest:
+cidCopy = cidCopy.sort( (a, b) => { return a - b });
+
+//for each denomination, highest to lowest, in cidCopy...
+
+for (let i = 0; i < cidCopy.length; i++) {
+
+//reset paidOut to 0...
+  let paidOut = 0;
+
+//while remainder to pay is more than the value of each denom, and, the number of each denom notes is more than 0...
+  while (changeDue > cidCopy[i][2] && cidCopy[i][3] > 0) {
+
+//check if subtracting one unit of the denom from remainder is more than or equal to 0, i.e. that it will be exact change...
+    if (changeDue - cidCopy[i][2] > 0) {
+
+//if so, subtract one unit from remainder, subtract 1 from number of units, add 1 to paidOut//
+      changeDue = Number((changeDue - cidCopy[i][2]).toFixed(2));
+      cidCopy[i][3]--;
+      paidOut++;
+    };
+  };
+
+//at end of while loop for particular denom, but BEFORE the For loop closes, set the amount of the denom as paidOut * value of denom, i.e. number of notes times value of each note//
+cidCopy[i][1] = Number((cidCopy[i][2] * paidOut).toFixed(2));
+
+};
+
+
+//otherwise: filter out all denoms that were not used...
+
+let changeGiven = cidCopy.filter( (x) => { return x[1] > 0 });
+
+console.log(changeGiven);
+
+//remove empty gaps...*Why TF DOES THIS START AT 0??*//
+
+changeGiven = changeGiven.map( (item) => { return item.splice(0, 2) });
+
+console.log(changeGiven);
+
+//assign change to return object, update status, return it...
+
+returnObj.status = "OPEN";
+returnObj.change = changeGiven;
+
+return returnObj;
+
+}
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
