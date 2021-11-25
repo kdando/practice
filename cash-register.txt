@@ -1,0 +1,104 @@
+function checkCashRegister(price, cash, cid) {
+
+  //NOTE: all calculations are "Number((...).toFixed(2))" because otherwise you get rounding errors//
+
+  //create default register object, an array for denomination values, a copy of cid. calculate variables for the change due and total cash available.//
+
+let registerObj = {
+  status: "OPEN",
+  change: cid
+}
+
+let unitArr = [
+  	["PENNY", 0.01],
+    ["NICKEL", 0.05],
+    ["DIME", 0.10],
+    ["QUARTER", 0.25],
+    ["ONE", 1],
+    ["FIVE", 5],
+    ["TEN", 10],
+    ["TWENTY", 20],
+    ["ONE HUNDRED", 100]
+  ];
+
+let cidCopy = cid.map(function(arr) {
+    return arr.slice();
+    });
+
+let changeDue = cash - price;
+changeDue = Number(changeDue.toFixed(2));
+
+let totalAvailable = cid.reduce( function(x, y) {
+  return x + y[1];
+  }, 0);
+totalAvailable = Number(totalAvailable.toFixed(2));
+
+///change due more than cash available:
+
+if (changeDue > totalAvailable) {
+  registerObj.status = "INSUFFICIENT_FUNDS";
+  registerObj.change = [];
+  return registerObj;
+}
+
+///change due equal to cash available:
+
+if (changeDue === totalAvailable) {
+  registerObj.status = "CLOSED";
+  registerObj.change = cid;
+  return registerObj;
+}
+
+//create variables to track amount of each unit paid out, and the value of the unit//
+//create an empty array that any change will be pushed to//
+
+let paidOut = 0;
+let unitValue = 0;
+let finalArr = [];
+
+/////////
+//loop backwards through the cidCopy array. the unit value and amount of units paid is reset at the beginning of each step in the outer loop//
+//inside, WHILE the changeDue is more than 1 unit, and there is more than 1 unit available, we minus 1 unit (value) from changeDue, reduce amount available by 1 unit (value), and add 1 to amount paid out (integer)//
+//repeat until either taking 1 unit makes changeDue a negative number (inexact change) or until the drawer is empty of that unit//
+//after that, calculate the AMOUNT of that unit used, and push this to finalArr//
+//then start the FOR loop at the next unit (counting down from highest to lowest), resetting paidOut to 0 and setting the new value from the parallel unitArr//
+
+for (let i = 8; i >= 0; i--) {
+
+paidOut = 0;
+unitValue = unitArr[i][1];
+
+while (changeDue >= unitValue && cidCopy[i][1] > 0) {
+
+  if (changeDue - unitValue >= 0) {
+      changeDue = Number((changeDue - unitValue).toFixed(2));
+      cidCopy[i][1] = Number((cidCopy[i][1] - unitValue).toFixed(2));
+      paidOut++;
+  };
+
+};
+
+cidCopy[i][1] = Number((unitValue * paidOut).toFixed(2));
+finalArr.push(cidCopy[i]);
+
+};
+
+/// exact change not possible:
+
+if (changeDue !== 0) {
+  registerObj.status = "INSUFFICIENT_FUNDS";
+  registerObj.change = [];
+  return registerObj;
+}
+
+//// otherwise, update register and return it:
+
+finalArr = finalArr.filter( x => { return x[1] > 0 });
+
+registerObj.status = "OPEN";
+registerObj.change = finalArr;
+return registerObj;
+
+};
+
+checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]);
