@@ -1,0 +1,22 @@
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // Change code below this line
+const name = this.state.name
+    // Change code above this line
+    return (
+      <div>
+        { /* Change code below this line */ }
+<h1>{name}</h1>
+        { /* Change code above this line */ }
+      </div>
+    );
+  }
+};
+
+//THis example is rendering the variable "name", which is assigned as = to the state value of the key called name, NOT rendering this state key value directly.//
