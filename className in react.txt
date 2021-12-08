@@ -1,0 +1,15 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Write code here:
+const myDiv = (<div className="big">
+I AM A BIG DIV
+</div>)
+
+ReactDOM.render(myDiv, document.getElementById("app"));
+
+//////
+Can't use "class" as attribute in JSX, has to be className.
+If JSX is multi-line, has to be bracketted ().
+ReactDOM.render() appends the 1st arg to whatever element is given as 2nd arg.
+//////
