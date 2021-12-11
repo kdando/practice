@@ -1,0 +1,27 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class MyQuote extends React.Component {
+  render() {
+    return (
+      <blockquote>
+      <p>
+      What is important now is to recover our senses.
+      </p>
+      <cite>
+      <a target="_blank"
+      href="https://en.wikipedia.org/wiki/Susan_Sontag">
+      Susan Sontag
+      </a>
+      </cite>
+      </blockquote>
+    )
+  }
+};
+
+ReactDOM.render(<MyQuote />, document.getElementById("app"))
+
+/////////////////
+In JSX multiline expressions must be wrapped in ()
+Which is why the return is here. Other than that its just {} wrapping the render method and another set of {} wrapping the component class declaration
+////////////////
