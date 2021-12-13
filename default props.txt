@@ -1,0 +1,27 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Button extends React.Component {
+  render() {
+    return (
+      <button>
+        {this.props.text}
+      </button>
+    );
+  }
+}
+
+// defaultProps goes here:
+Button.defaultProps = { text: "I am a button" }
+
+
+ReactDOM.render(
+  <Button text="I am not a button" />, 
+  document.getElementById('app')
+);
+
+///////////
+Default Props are declared outside the class component blueprint.
+They are set as equal to an object containing any properties you want to provide a default for.
+In this example the default prop is overwritten by the property passed in the ReactDOM.render instantiation.
+//////////
