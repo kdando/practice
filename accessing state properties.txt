@@ -1,0 +1,26 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends React.Component {
+	// constructor method begins here:
+constructor(props) {
+  super(props);
+  this.state = { title: "Best App" }
+}
+	
+  render() {
+    return (
+      <h1>
+        { this.state.title }
+      </h1>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById("app"));
+
+
+////////////
+Here a property of the component's state is accessed in the render function of that component.
+Syntax to access state property's (remember, state should be an object) is dot notation: this.state.<nameofproperty>
+///////////

@@ -1,0 +1,26 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends React.Component {
+	// constructor method begins here:
+constructor(props) {
+  super(props);
+  this.state = { title: "Best App" }
+}
+	
+  render() {
+    return (
+      <h1>
+        Wow this entire app is just an h1.
+      </h1>
+    );
+  }
+}
+
+////////
+State is not passed from outside and should be set in the constructor class.
+State should be an object.
+State is a property and is declared inside a constructor function, inside the constructor class. It is a separate function alongside the render function.
+Super is being called as part of this constructor function. It is done to inherit the props from the parent class (here, that's the React.Component).
+React Components ALWAYS must call super in their constructor functions.
+////////
