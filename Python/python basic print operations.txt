@@ -1,0 +1,8 @@
+my_age = 1001
+half_my_age = my_age / 2
+greeting = "What's up "
+name = "Buffalo"
+greeting_with_name = greeting + name
+
+print(greeting_with_name)
+print("You are", my_age, "which is double", half_my_age)
