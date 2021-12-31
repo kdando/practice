@@ -1,0 +1,43 @@
+x = 20
+y = 20
+
+# Write the first if statement here:
+if x == y:
+  print("These numbers are the same")
+
+
+credits = 120
+
+# Write the second if statement here:
+if credits >= 120:
+  print("You have enough credits to graduate!")
+
+######### AND OPERATOR ##########
+
+statement_one = (2 + 2 + 2 >= 6) and (-1 * -1 < 0)
+
+statement_two = (4 * 2 <= 8) and (7 - 1 == 6)
+
+credits = 120
+gpa = 3.4
+
+if (credits >= 120) and (gpa >= 2.0):
+  print("You meet the requirements to graduate!")
+
+######### NOT OPERATOR ##########
+
+statement_one = not (4 + 5 <= 9)
+
+statement_two = not (8 * 2) != 20 - 4
+
+credits = 120
+gpa = 1.8
+
+if not credits >= 120:
+  print("You do not have enough credits to graduate.")
+
+  if not gpa >= 2.0:
+    print("Your GPA is not high enough to graduate.")
+
+    if (not credits >= 120) and (not gpa >= 2.0):
+      print("You do not meet either requirement to graduate!")

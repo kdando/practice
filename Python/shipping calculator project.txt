@@ -1,0 +1,31 @@
+weight = 4.8
+
+#Ground shipping
+
+if (weight <= 2):
+ cost = (weight * 1.50) + 20
+elif (weight > 2) and (weight <= 6):
+ cost = (weight * 3.00) + 20
+elif (weight > 6) and (weight <= 10):
+ cost = (weight * 4.00) + 20
+else:
+ cost = (weight * 14.25) + 20
+
+print("Ground shipping cost is:", cost)
+
+premium_ground_charge = 125.00
+
+print("Ground Shipping Premium $", premium_ground_charge)
+
+#Drone shipping
+
+if (weight <= 2):
+ cost = weight * 4.50
+elif (weight > 2) and (weight <= 6):
+ cost = weight * 9.00
+elif (weight > 6) and (weight <= 10):
+ cost = weight * 12.00
+else:
+ cost = weight * 14.25
+
+print("Drone shipping cost:", cost)
