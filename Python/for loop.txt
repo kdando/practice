@@ -1,0 +1,14 @@
+board_games = ["Settlers of Catan", "Carcassone", "Power Grid", "Agricola", "Scrabble"]
+
+sport_games = ["football", "hockey", "baseball", "cricket"]
+
+for game in board_games:
+  print(game)
+
+for x in sport_games:
+  print(x)
+
+####
+"game" or "x" here is a temporary variable - it doesnt need to be defined beforehand.
+indentation matters in Python: everything at the same indentation as "print" here is considered one block of code. so the loop would run it all
+###

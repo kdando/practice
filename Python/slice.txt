@@ -1,0 +1,30 @@
+suitcase = ["shirt", "shirt", "pants", "pants", "pajamas", "books"]
+
+beginning = suitcase[0:2]
+
+# Your code below: 
+
+print(beginning)
+
+middle = suitcase[2:4]
+
+print(middle)
+
+###############NOTE: the second index position is non-inclusive - so 2:4 will give you items at index 2 and 3, NOT 4 ###########
+
+suitcase = ["shirt", "shirt", "pants", "pants", "pajamas", "books"]
+
+# Your code below: 
+
+last_two_elements = suitcase[-2:]
+
+print(last_two_elements)
+
+slice_off_last_three = suitcase[:-3]
+
+print(slice_off_last_three)
+
+############### list[:n] gives you ALL ITEMS FROM 0 UP TO (non-incl.) N - so suitcase[:2] will give you item 0 and item 1.
+list[-n:] gives you the last n items. Counting backwards because negative number, and not starting at 0. 
+So suitcase[-2:] gives you "pajamas" and "books".
+Doing list[:-n] would give you ALL BUT THE LAST N ITEMS - like saying "count up to n-from-the-end".###############

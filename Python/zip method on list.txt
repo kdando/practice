@@ -1,0 +1,15 @@
+owners = ["Jenny", "Alexus", "Sam", "Grace"]
+dogs_names = ["Elphonse", "Dr. Doggy DDS", "Carter", "Ralph"]
+
+names_and_dogs_names = zip(owners, dogs_names)
+
+list_of_names_and_dogs_names = list(names_and_dogs_names)
+
+print(list_of_names_and_dogs_names)
+
+[('Jenny', 'Elphonse'), ('Alexus', 'Dr. Doggy DDS'), ('Sam', 'Carter'), ('Grace', 'Ralph')]
+
+############
+Zip method combiens lists
+First variable just points to location in computer memory if we print it, so we need to convert to a usable list with the list() method
+Finally, note that the printed list isn't a list of lists, but a list of TUPLES - i.e. immutable data objects.
