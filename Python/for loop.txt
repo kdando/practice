@@ -8,7 +8,13 @@ for game in board_games:
 for x in sport_games:
   print(x)
 
-####
-"game" or "x" here is a temporary variable - it doesnt need to be defined beforehand.
-indentation matters in Python: everything at the same indentation as "print" here is considered one block of code. so the loop would run it all
-###
+#### "game" or "x" here is a temporary variable - it doesnt need to be defined beforehand.
+indentation matters in Python: everything at the same indentation as "print" here is considered one block of code. so the loop would run it all ###
+
+promise = "I will finish the python loops module!"
+
+for instance in range(5):
+  print(promise)
+
+####This uses range() to repeat something x number of times (1 less because range starts at 0). the temporary variable "instance" is not used inside the loop for anything but it could be.####
+

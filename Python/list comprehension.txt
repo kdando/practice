@@ -1,0 +1,22 @@
+grades = [90, 88, 62, 76, 74, 89, 48, 57]
+
+### new_collection = [ <some expression> for <item> in <collection> ]
+
+scaled_grades = [ grade + 10 for grade in grades ]
+
+print(scaled_grades)
+
+### NOTE: the expression here is "grade + 10" NOT grade += 10...we are doing an operation on a temporary variable, not an assignment of a single variable. Also note that the temp. variable in the expression matches the temporary variable in the <item> part of the for loop statement ###
+
+### List Comprehensions can also incorporate conditionals:
+
+heights = [161, 164, 156, 144, 158, 170, 163, 163, 157]
+
+can_ride_coaster = [ item for item in heights if item > 161 ]
+
+print(can_ride_coaster)
+
+### The conditional statement comes at the end, after the for loop statement. It can also come at the start if for example there was an if/else...e.g. "doubled = [num * 2 if num < 0 else num * 3 for num in numbers ]"
+
+
+

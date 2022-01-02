@@ -1,0 +1,8 @@
+ages = [12, 38, 34, 26, 21, 19, 67, 41, 17]
+
+for age in ages:
+  if age < 21:
+    continue
+  print(age)
+
+### CONTINUE means that the rest of the code block is skipped (here, the print statement) and the loop goes to the next iteration. IF continue was not hit, the rest of the block would run. ###

@@ -1,0 +1,12 @@
+sales_data = [[12, 17, 22], [2, 10, 3], [5, 12, 13]]
+
+scoops_sold = 0
+
+for location in sales_data:
+  print(location)
+  for scoops in location:
+    scoops_sold += scoops
+
+print(scoops_sold)
+
+### NOTE that the 'target' of the inner loop matches the temporary variable of the outer loop: in other words, we tell the inner loop to look inside - to loop through - the temp variable of the outer ###
