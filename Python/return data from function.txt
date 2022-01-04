@@ -1,0 +1,35 @@
+current_budget = 3500.75
+
+def print_remaining_budget(budget):
+  print("Your remaining budget is: $" + str(budget))
+
+print_remaining_budget(current_budget)
+
+# Write your code below: 
+
+shirt_expense = 9
+
+def deduct_expense(budget, expense):
+  return budget - expense
+
+new_budget_after_shirt = deduct_expense(current_budget, shirt_expense)
+
+print_remaining_budget(new_budget_after_shirt)
+
+### new_budget... variable gets its value by calling the deduct_expense function with 2 other variables given as arguments. This function returns a value, which is then assigned to new_budget... if the function just printed the result of its calculation, for example, then the new_budget wouldn't be assigned anything because no data is being returned ###
+
+### RETURN MULTIPLE VALUES:
+
+def top_tourist_locations_italy():
+  first = "Rome"
+  second = "Venice"
+  third = "Florence"
+  return first, second, third
+
+most_popular1, most_popular2, most_popular3 = top_tourist_locations_italy()
+
+print(most_popular1)
+print(most_popular2)
+print(most_popular3)
+
+### Here the function returns 3 values (the value of the 3 variables). By calling the function as part of an assignment, the 3 values returned are assigned to 3 new variables stated. They are assigned in order so first becomes most_popular1 etc. ###

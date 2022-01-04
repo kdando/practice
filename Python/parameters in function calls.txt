@@ -1,0 +1,11 @@
+# Write your code below:
+
+def trip_planner(first_destination, second_destination, final_destination = "Codecademy HQ"):
+  print("Here is what your trip will look like!")
+  print("First, we will stop in", first_destination, ", then", second_destination, ", and lastly", final_destination)
+
+trip_planner(first_destination = "Iceland", final_destination = "Germany", second_destination = "India")
+
+trip_planner("Brooklyn", "Queens")
+
+### 3 kinds of arguments: positional (parameter is matched by order in the function call), keyword (parameter is set explicitly in the function call, can be in any order), default (value of parameter is set in function definition and defaults to this unless otherwise stated un function call). ###

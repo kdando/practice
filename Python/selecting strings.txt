@@ -1,0 +1,34 @@
+first_name = "Rodrigo"
+last_name = "Villanueva"
+
+new_account = last_name[:5]
+
+#this selects the first five letters, i.e. : first means start at the beginning, 5 means up to but not incl. index 5, strings are 0 indexed so fifth letter is at index 4.
+
+temp_password = last_name[2:6]
+
+#this selects the 3rd letter to the 6th letter inclusively. zero indexing means 3rd letter is at position 2. stop point is non-inclusive so to select the 6th letter we stop at index 6 (which is the 7th letter)
+
+first_name = "Julie"
+last_name = "Blevins"
+
+def account_generator(first, last):
+  new_acc = first[:3] + last[:3]
+  return new_acc
+
+new_account = account_generator(first_name, last_name)
+
+print(new_account)
+
+###
+
+first_name = "Reiko"
+last_name = "Matsuki"
+
+def password_generator(first, last):
+  pwd = first[-3:] + last[-3:]
+  return pwd
+
+temp_password = password_generator(first_name, last_name)
+
+# this selects the last 3 letters of each name, i.e. start at -3 (3 from the end), go up to the end. this is akin to saying [5:] to mean start at 5 and go to the end, and so on.
