@@ -1,0 +1,53 @@
+poem_title = "spring storm"
+poem_author = "William Carlos Williams"
+
+poem_title_fixed = poem_title.title()
+print(poem_title_fixed)
+
+poem_author_fixed = poem_author.upper()
+print(poem_author_fixed)
+
+# These methods do not mutate the original, can only be used to create new strings #
+
+### Formatting (splitting, joining, etc) a list of names to get a lsit of surnames: ###
+
+authors = "Audre Lorde,Gabriela Mistral,Jean Toomer,An Qi,Walt Whitman,Shel Silverstein,Carmen Boullosa,Kamala Suraiyya,Langston Hughes,Adrienne Rich,Nikki Giovanni"
+
+author_names = authors.split(",")
+
+print(author_names)
+
+sep = " "
+
+author_names = sep.join(author_names)
+author_names = author_names.split(" ")
+
+print(author_names)
+
+author_last_names = []
+
+for name in range(1, len(author_names), 2):
+  author_last_names.append(author_names[name])
+
+print(author_last_names)
+
+# Strip method and a list comprehension: #
+
+love_maybe_lines = ['Always    ', '     in the middle of our bloodiest battles  ', 'you lay down your arms', '           like flowering mines    ','\n' ,'   to conquer me home.    ']
+
+love_maybe_lines_stripped = [ line.strip() for line in love_maybe_lines ]
+
+love_maybe_full = "\n".join(love_maybe_lines_stripped)
+
+print(love_maybe_full)
+
+# Remember the join method works on the delimiter with the string as the argument...contrary to the other methods #
+
+toomer_bio = \
+"""
+Nathan Pinchback Tomer, who adopted the name Jean Tomer early in his literary career, was born in Washington, D.C. in 1894. Jean is the son of Nathan Tomer was a mixed-race freedman, born into slavery in 1839 in Chatham County, North Carolina. Jean Tomer is most well known for his first book Cane, which vividly portrays the life of African-Americans in southern farmlands.
+"""
+
+toomer_bio_fixed = toomer_bio.replace("Tomer", "Toomer")
+
+### string.find("item") gives the FIRST index position of item in string ###
