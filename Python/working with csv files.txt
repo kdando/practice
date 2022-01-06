@@ -1,0 +1,35 @@
+import csv
+
+with open("cool_csv.csv") as cool_csv_file:
+  cool_csv_dict = csv.DictReader(cool_csv_file)
+  for row in cool_csv_dict:
+    print(row["Cool Fact"])
+
+
+### We import the CSV module to be able to parse csv files. Then we turn the opened file into a dictionary tied to a new variable. Then with a for loop we print out the value of the key "Cool Fact" at each row. NOTE: "row" is just a temporary variable in a for loop here. We are iterating through the rows but we could use any name for this variable ###
+
+# A CSV file isnt always actually comma-separated. When the delimiter is different we need to specify it by passing that string as an argument to the DictReader function:
+
+import csv
+
+with open("books.csv") as books_csv:
+  books_reader = csv.DictReader(books_csv, delimiter="@")
+  isbn_list = []
+  for book in books_reader:
+    isbn_list.append(book["ISBN"])
+
+###
+
+access_log = [{'time': '08:39:37', 'limit': 844404, 'address': '1.227.124.181'}, {'time': '13:13:35', 'limit': 543871, 'address': '198.51.139.193'}, {'time': '19:40:45', 'limit': 3021, 'address': '172.1.254.208'}, {'time': '18:57:16', 'limit': 67031769, 'address': '172.58.247.219'}, {'time': '21:17:13', 'limit': 9083, 'address': '124.144.20.113'}, {'time': '23:34:17', 'limit': 65913, 'address': '203.236.149.220'}, {'time': '13:58:05', 'limit': 1541474, 'address': '192.52.206.76'}, {'time': '10:52:00', 'limit': 11465607, 'address': '104.47.149.93'}, {'time': '14:56:12', 'limit': 109, 'address': '192.31.185.7'}, {'time': '18:56:35', 'limit': 6207, 'address': '2.228.164.197'}]
+fields = ['time', 'address', 'limit']
+
+import csv
+
+with open("logger.csv", "w") as logger_csv:
+  log_writer = csv.DictWriter(logger_csv, fieldnames = fields)
+  log_writer.writeheader()
+  for x in access_log:
+    log_writer.writerow(x)
+
+## This ^ first opens the logger.csv file. Then it creates a useable object from the csv file, the 2nd parameter telling it that the fieldnames for this object will be the fields from the logger csv. then we writeheader() to add all the fields as the first row. then we iterate through the above defined dictionary and populate the rows of the new object with the values in each item...i think...something like that....###
+

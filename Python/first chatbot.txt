@@ -1,0 +1,5 @@
+print("Welcome you sons of bitches")
+print("This thing will copy you")
+
+stuff_to_echo = input("Speak, priest!")
+print("You said: {}".format(stuff_to_echo))

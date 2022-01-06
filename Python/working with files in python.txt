@@ -1,0 +1,30 @@
+with open("welcome.txt") as text_file:
+  text_data = text_file.read()
+  print(text_data)
+
+# Use "with open("something.blah") as somethingelse" to open a file called something.blah and tie its contents to a variable called somethingelse. Use the .read() method to copy its contents, here to another variable which is then printed. #
+
+### read() copies the entire contents of a file. But we can also iterate over each line in turn with .readlines(), e.g.:
+
+with open("how_many_lines.txt") as lines_doc:
+  for line in lines_doc.readlines():
+    print(line)
+
+### or we can read individual lines, .readline() goes through the file 1 by 1. If it reaches the end subsequent calls will return an empty string.
+
+with open("just_the_first.txt") as first_line_doc:
+  first_line = first_line_doc.readline()
+  print(first_line)
+
+### add "w" as a second argument to open a file in write-mode (default is "r", read-only). Use the write method to overwrite it completely. ###
+
+with open("bad_bands.txt", "w") as bad_bands_doc:
+  bad_bands_doc.write("The Shit Band")
+
+### open with "a" for append mode - so anything you write will be an addition rather than an overwrite:
+
+with open("cool_dogs.txt", "a") as cool_dogs_file:
+  cool_dogs_file.write("Air Buddy")
+
+
+

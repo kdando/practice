@@ -1,0 +1,27 @@
+drinks = ["espresso", "chai", "decaf", "drip"]
+caffeine = [64, 40, 0, 120]
+
+zipped_drinks = zip(drinks, caffeine)
+
+print(list(zipped_drinks))
+
+drinks_to_caffeine = { key: value for key, value in zipped_drinks }
+
+### zip() creates a LIST of TUPLES, combining 0 from drinks with 0 from caffeine, etc.
+### then the comprehension creates a dictionary, the syntax saying take a key and value from each item in the list called zipped_drinks.
+
+# Another example:
+
+songs = ["Like a Rolling Stone", "Satisfaction", "Imagine", "What's Going On", "Respect", "Good Vibrations"]
+playcounts = [78, 29, 44, 21, 89, 5]
+
+plays = { key: value for key, value in zip(songs, playcounts) }
+plays["Purple Haze"] = 1
+plays["Respect"] = 94
+library = { "The Best Songs": plays, "Sunday Feelings": {} }
+print(library)
+
+# Final output:
+
+{'The Best Songs': {'Like a Rolling Stone': 78, 'Satisfaction': 29, 'Imagine': 44, "What's Going On": 21, 'Respect': 94, 'Good Vibrations': 5, 'Purple Haze': 1}, 'Sunday Feelings': {}}
+

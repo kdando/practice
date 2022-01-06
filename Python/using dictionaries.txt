@@ -1,0 +1,65 @@
+zodiac_elements = {"water": ["Cancer", "Scorpio", "Pisces"], "fire": ["Aries", "Leo", "Sagittarius"], "earth": ["Taurus", "Virgo", "Capricorn"], "air":["Gemini", "Libra", "Aquarius"]}
+
+print(zodiac_elements["earth"])
+
+print(zodiac_elements["fire"])
+
+# Use square bracket notation to access data in dictionaries. Check if a dictionary includes a key with "in" keyword:
+
+key_to_check = "Landmark 81"
+ 
+if key_to_check in building_heights:
+  print(building_heights["Landmark 81"])
+
+# Another method: try/except, which works like an if/else statement, e.g. this code would run the "except" part:
+
+caffeine_level = {"espresso": 64, "chai": 40, "decaf": 0, "drip": 120}
+
+try:
+  print(caffeine_level["matcha"])
+except:
+  print("Unknown Caffeine Level")
+
+###
+
+# use .pop() to remove item from dictionary. We can do this when we know the key name. pop takes 2 arguments, the name of the key/value to remove, and the second argument is what to return if the named key is not found #
+
+available_items = {"health potion": 10, "cake of the cure": 5, "green elixir": 20, "strength sandwich": 25, "stamina grains": 15, "power stew": 30}
+health_points = 20
+
+health_points += available_items.pop("stamina grains", 0)
+health_points += available_items.pop("power stew", 0)
+health_points += available_items.pop("mystic bread", 0)
+print(health_points)
+print(available_items)
+
+# Final output:
+
+65
+{'health potion': 10, 'cake of the cure': 5, 'green elixir': 20, 'strength sandwich': 25}
+
+###
+
+# Use list() on a dictionary will give you a list of all the keys in the dictionary (not their values). Use the .keys() method on a dictionary to give you an iterable "view object" of all the keys. You can't add or remove stuff from a view object but you can use it instead of a list for iteration. #
+
+user_ids = {"teraCoder": 100019, "pythonGuy": 182921, "samTheJavaMaam": 123112, "lyleLoop": 102931, "keysmithKeith": 129384}
+num_exercises = {"functions": 10, "syntax": 13, "control flow": 15, "loops": 22, "lists": 19, "classes": 18, "dictionaries": 18}
+
+users = user_ids.keys()
+lessons = num_exercises.keys()
+print(users)
+print(lessons)
+
+# There is also an equivalent .values() method that works like .keys(). But there isn't an automatic way to get a list of all values -- you'd have to go the long way round and do list(my_dict.values()). #
+
+num_exercises = {"functions": 10, "syntax": 13, "control flow": 15, "loops": 22, "lists": 19, "classes": 18, "dictionaries": 18}
+
+total_exercises = 0
+
+for item in num_exercises.values():
+  total_exercises += item
+
+print(total_exercises)
+
+
+
