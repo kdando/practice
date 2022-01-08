@@ -1,0 +1,43 @@
+import nltk, re
+from nltk.tokenize import word_tokenize
+# importing ngrams module from nltk
+from nltk.util import ngrams
+from collections import Counter
+from looking_glass import looking_glass_full_text
+
+cleaned = re.sub('\W+', ' ', looking_glass_full_text).lower()
+tokenized = word_tokenize(cleaned)
+
+# Change the n value to 2:
+looking_glass_bigrams = ngrams(tokenized, 2)
+looking_glass_bigrams_frequency = Counter(looking_glass_bigrams)
+
+# Change the n value to 3:
+looking_glass_trigrams = ngrams(tokenized, 3)
+looking_glass_trigrams_frequency = Counter(looking_glass_trigrams)
+
+# Change the n value to a number greater than 3:
+looking_glass_ngrams = ngrams(tokenized, 10)
+looking_glass_ngrams_frequency = Counter(looking_glass_ngrams)
+
+print("Looking Glass Bigrams:")
+print(looking_glass_bigrams_frequency.most_common(10))
+
+print("\nLooking Glass Trigrams:")
+print(looking_glass_trigrams_frequency.most_common(10))
+
+print("\nLooking Glass n-grams:")
+print(looking_glass_ngrams_frequency.most_common(10))
+
+###
+Final output:
+###
+
+Looking Glass Bigrams:
+[(('of', 'the'), 101), (('said', 'the'), 98), (('in', 'a'), 97), (('in', 'the'), 90), (('as', 'she'), 82), (('you', 'know'), 72), (('a', 'little'), 68), (('the', 'queen'), 67), (('said', 'alice'), 67), (('to', 'the'), 66)]
+
+Looking Glass Trigrams:
+[(('the', 'red', 'queen'), 54), (('the', 'white', 'queen'), 31), (('said', 'in', 'a'), 21), (('she', 'went', 'on'), 18), (('said', 'the', 'red'), 17), (('thought', 'to', 'herself'), 16), (('the', 'queen', 'said'), 16), (('said', 'to', 'herself'), 14), (('said', 'humpty', 'dumpty'), 14), (('the', 'knight', 'said'), 14)]
+
+Looking Glass n-grams:
+[(('one', 'and', 'one', 'and', 'one', 'and', 'one', 'and', 'one', 'and'), 5), (('and', 'one', 'and', 'one', 'and', 'one', 'and', 'one', 'and', 'one'), 5), (('twas', 'brillig', 'and', 'the', 'slithy', 'toves', 'did', 'gyre', 'and', 'gimble'), 3), (('brillig', 'and', 'the', 'slithy', 'toves', 'did', 'gyre', 'and', 'gimble', 'in'), 3), (('and', 'the', 'slithy', 'toves', 'did', 'gyre', 'and', 'gimble', 'in', 'the'), 3), (('the', 'slithy', 'toves', 'did', 'gyre', 'and', 'gimble', 'in', 'the', 'wabe'), 3), (('slithy', 'toves', 'did', 'gyre', 'and', 'gimble', 'in', 'the', 'wabe', 'all'), 3), (('toves', 'did', 'gyre', 'and', 'gimble', 'in', 'the', 'wabe', 'all', 'mimsy'), 3), (('did', 'gyre', 'and', 'gimble', 'in', 'the', 'wabe', 'all', 'mimsy', 'were'), 3), (('gyre', 'and', 'gimble', 'in', 'the', 'wabe', 'all', 'mimsy', 'were', 'the'), 3)]

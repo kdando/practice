@@ -1,0 +1,77 @@
+import nltk, re
+from sherlock_holmes import bohemia_ch1, bohemia_ch2, bohemia_ch3, boscombe_ch1, boscombe_ch2, boscombe_ch3
+from preprocessing import preprocess_text
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.decomposition import LatentDirichletAllocation
+
+# preparing the text
+corpus = [bohemia_ch1, bohemia_ch2, bohemia_ch3, boscombe_ch1, boscombe_ch2, boscombe_ch3]
+preprocessed_corpus = [preprocess_text(chapter) for chapter in corpus]
+
+# Update stop_list:
+stop_list = ["the", "look", "on", "say", "man", "and", "see", "upon", "would", "could"]
+# filtering topics for stop words
+def filter_out_stop_words(corpus):
+  no_stops_corpus = []
+  for chapter in corpus:
+    no_stops_chapter = " ".join([word for word in chapter.split(" ") if word not in stop_list])
+    no_stops_corpus.append(no_stops_chapter)
+  return no_stops_corpus
+filtered_for_stops = filter_out_stop_words(preprocessed_corpus)
+
+# creating the bag of words model
+bag_of_words_creator = CountVectorizer()
+bag_of_words = bag_of_words_creator.fit_transform(filtered_for_stops)
+
+# creating the tf-idf model
+tfidf_creator = TfidfVectorizer(min_df = 0.2)
+tfidf = tfidf_creator.fit_transform(preprocessed_corpus)
+
+# creating the bag of words LDA model
+lda_bag_of_words_creator = LatentDirichletAllocation(learning_method='online', n_components=10)
+lda_bag_of_words = lda_bag_of_words_creator.fit_transform(bag_of_words)
+
+# creating the tf-idf LDA model
+lda_tfidf_creator = LatentDirichletAllocation(learning_method='online', n_components=10)
+lda_tfidf = lda_tfidf_creator.fit_transform(tfidf)
+
+print("~~~ Topics found by bag of words LDA ~~~")
+for topic_id, topic in enumerate(lda_bag_of_words_creator.components_):
+  message = "Topic #{}: ".format(topic_id + 1)
+  message += " ".join([bag_of_words_creator.get_feature_names()[i] for i in topic.argsort()[:-5 :-1]])
+  print(message)
+
+print("\n\n~~~ Topics found by tf-idf LDA ~~~")
+for topic_id, topic in enumerate(lda_tfidf_creator.components_):
+  message = "Topic #{}: ".format(topic_id + 1)
+  message += " ".join([tfidf_creator.get_feature_names()[i] for i in topic.argsort()[:-5 :-1]])
+  print(message)
+
+###
+Final output:
+###
+
+~~~ Topics found by bag of words LDA ~~~
+Topic #1: know holmes come mr
+Topic #2: father holmes know mccarthy
+Topic #3: case know holmes come
+Topic #4: holmes know come take
+Topic #5: holmes one find may
+Topic #6: holmes hand one know
+Topic #7: one mccarthy father holmes
+Topic #8: take street room holmes
+Topic #9: mccarthy holmes one father
+Topic #10: holmes know one come
+
+
+~~~ Topics found by tf-idf LDA ~~~
+Topic #1: come upon could play
+Topic #2: voice bit line honour
+Topic #3: majesty king holmes photograph
+Topic #4: write side obvious answer
+Topic #5: peculiar case satisfaction reasoner
+Topic #6: lay interest add love
+Topic #7: easy bright already without
+Topic #8: elderly soul poor solemnly
+Topic #9: coat one large disturb
+Topic #10: holmes say upon mccarthy
