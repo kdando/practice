@@ -1,0 +1,23 @@
+from nltk import RegexpParser, Tree
+from pos_tagged_oz import pos_tagged_oz
+
+# define chunk grammar to chunk an entire sentence together
+grammar = "Chunk: {<.*>+}"
+chunk_grammar = """NP: {<.*>+}
+                       }<VB.?|IN>+{"""
+
+### The 2nd block: captures everything, then filters out anything that starts with a verb or a preposition ###
+
+# create RegexpParser object
+parser = RegexpParser(grammar)
+chunk_parser = RegexpParser(chunk_grammar)
+
+# chunk the pos-tagged sentence at index 230 in pos_tagged_oz
+chunked_dancers = parser.parse(pos_tagged_oz[230])
+print(chunked_dancers)
+
+filtered_dancers = chunk_parser.parse(pos_tagged_oz[230])
+print(filtered_dancers)
+
+# pretty_print the chunked and filtered sentence here
+Tree.fromstring(str(filtered_dancers)).pretty_print()
