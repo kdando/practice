@@ -1,0 +1,61 @@
+from nltk import pos_tag, RegexpParser
+from tokenize_words import word_sentence_tokenize
+from chunk_counters import np_chunk_counter, vp_chunk_counter
+
+# import text of choice here
+
+text = open("dorian_gray.txt", encoding="utf-8").read().lower()
+
+# sentence and word tokenize text here
+
+word_tokenized_text = word_sentence_tokenize(text)
+single_word_tokenized_sentence = word_tokenized_text[200]
+
+# create a list to hold part-of-speech tagged sentences here
+
+pos_tagged_text = []
+
+# create a for loop through each word tokenized sentence here
+
+for sentence in word_tokenized_text:
+  tag_sen = pos_tag(sentence)
+  pos_tagged_text.append(tag_sen)
+
+# define noun phrase chunk grammar and parser here
+# NOTE: grammar for parser can be passed straight to RegexpParser as an arg. Don't need to set as a variable first #
+
+np_chunk_grammar = "NP: {<DT>?<JJ>*<NN>}"
+np_chunk_parser = RegexpParser(np_chunk_grammar)
+
+# define verb phrase chunk grammar and parser here
+
+vp_chunk_grammar = "VP: {<DT>?<JJ>*<NN><VB.*><RB.?>?}"
+vp_chunk_parser = RegexpParser(vp_chunk_grammar)
+
+# create a list to hold noun phrase chunked sentences and a list to hold verb phrase chunked sentences here
+
+np_chunked_text = []
+vp_chunked_text = []
+
+# create a for loop through each pos-tagged sentence here
+
+for sentence in pos_tagged_text:
+  np_chunked_text.append(np_chunk_parser.parse(sentence))
+  vp_chunked_text.append(vp_chunk_parser.parse(sentence))
+
+# store and print the most common chunks here
+
+most_common_np_chunks = np_chunk_counter(np_chunked_text)
+print(most_common_np_chunks)
+
+most_common_vp_chunks = vp_chunk_counter(vp_chunked_text)
+print(most_common_vp_chunks)
+
+###
+Final output:
+###
+
+[((('i', 'NN'),), 962), ((('henry', 'NN'),), 200), ((('lord', 'NN'),), 197), ((('life', 'NN'),), 170), ((('harry', 'NN'),), 136), ((('dorian', 'JJ'), ('gray', 'NN')), 127), ((('something', 'NN'),), 126), ((('nothing', 'NN'),), 93), ((('basil', 'NN'),), 85), ((('the', 'DT'), ('world', 'NN')), 70), ((('everything', 'NN'),), 69), ((('anything', 'NN'),), 68), ((('hallward', 'NN'),), 68), ((('the', 'DT'), ('man', 'NN')), 61), ((('the', 'DT'), ('room', 'NN')), 60), ((('face', 'NN'),), 58), ((('the', 'DT'), ('door', 'NN')), 56), ((('love', 'NN'),), 55), ((('art', 'NN'),), 52), ((('course', 'NN'),), 51), ((('the', 'DT'), ('picture', 'NN')), 46), ((('the', 'DT'), ('lad', 'NN')), 45), ((('head', 'NN'),), 44), ((('round', 'NN'),), 44), ((('hand', 'NN'),), 44), ((('sibyl', 'NN'),), 41), ((('the', 'DT'), ('table', 'NN')), 40), ((('the', 'DT'), ('painter', 'NN')), 38), ((('sir', 'NN'),), 38), ((('a', 'DT'), ('moment', 'NN')), 38)]
+
+
+[((('i', 'NN'), ('am', 'VBP')), 101), ((('i', 'NN'), ('was', 'VBD')), 40), ((('i', 'NN'), ('want', 'VBP')), 37), ((('i', 'NN'), ('know', 'VBP')), 33), ((('i', 'NN'), ('have', 'VBP')), 32), ((('i', 'NN'), ('do', 'VBP'), ("n't", 'RB')), 31), ((('i', 'NN'), ('had', 'VBD')), 31), ((('i', 'NN'), ('suppose', 'VBP')), 17), ((('i', 'NN'), ('think', 'VBP')), 16), ((('i', 'NN'), ('am', 'VBP'), ('not', 'RB')), 14), ((('i', 'NN'), ('thought', 'VBD')), 13), ((('i', 'NN'), ('believe', 'VBP')), 12), ((('dorian', 'JJ'), ('gray', 'NN'), ('was', 'VBD')), 11), ((('i', 'NN'), ('am', 'VBP'), ('so', 'RB')), 11), ((('henry', 'NN'), ('had', 'VBD')), 11), ((('i', 'NN'), ('did', 'VBD'), ("n't", 'RB')), 9), ((('i', 'NN'), ('met', 'VBD')), 9), ((('i', 'NN'), ('said', 'VBD')), 9), ((('i', 'NN'), ('am', 'VBP'), ('quite', 'RB')), 8), ((('i', 'NN'), ('see', 'VBP')), 8), ((('i', 'NN'), ('did', 'VBD'), ('not', 'RB')), 7), ((('i', 'NN'), ('have', 'VBP'), ('ever', 'RB')), 7), ((('life', 'NN'), ('has', 'VBZ')), 7), ((('i', 'NN'), ('did', 'VBD')), 6), ((('i', 'NN'), ('feel', 'VBP')), 6), ((('life', 'NN'), ('is', 'VBZ')), 6), ((('the', 'DT'), ('lad', 'NN'), ('was', 'VBD')), 6), ((('i', 'NN'), ('asked', 'VBD')), 6), ((('i', 'NN'), ('came', 'VBD')), 6), ((('i', 'NN'), ('felt', 'VBD')), 6)]
