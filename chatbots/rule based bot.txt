@@ -1,0 +1,107 @@
+import re
+import random
+
+class SupportBot:
+  negative_responses = ("nothing", "don't", "stop", "sorry")
+
+  exit_commands = ("quit", "pause", "exit", "goodbye", "bye", "later")
+
+  def __init__(self):
+    pass
+
+  def welcome(self):
+    name = input("Hi, I'm a customer support representative. Welcome to Codecademy Bank. Before we can help you, I need some information from you. What is your first name and last name? ")
+    will_help = input(f"Okay {name}, what can I help you with?")
+    if will_help in self.negative_responses:
+      print("Okay, have a great day!")
+      return
+    else:
+      return will_help
+
+# Create a SupportBot instance
+SupportConversation = SupportBot()
+# Call the .welcome() method
+SupportConversation.welcome()
+
+######################
+Adding a while loop to handle indefinate conversation length
+######################
+
+import re
+import random
+
+class SupportBot:
+  negative_responses = ("nothing", "don't", "stop", "sorry")
+
+  exit_commands = ("quit", "pause", "exit", "goodbye", "bye", "later")
+
+  def __init__(self):
+    pass
+
+  def welcome(self):
+    name = input("Hi, I'm a customer support representative. Welcome to Codecademy Bank. Before we can help you, I need some information from you. What is your first name and last name? ")
+    
+    will_help = input(f"Ok {name}, what can I help you with? ")
+    
+    if will_help in self.negative_responses:
+      print("Ok, have a great day!")
+      return
+    
+    self.handle_conversation(will_help)
+
+    # Add a call to self.handle_conversation() here
+  
+  def handle_conversation(self, reply):
+    while not (reply == "stop"):
+      reply = input("How's it going?")
+    print("Conversation is being handled")
+    
+# Create a SupportBot instance
+SupportConversation = SupportBot()
+# Call the .welcome() method
+SupportConversation.welcome()
+
+#####################
+Adding ability to exit conversation beyond just "stop"
+#####################
+
+import re
+import random
+
+class SupportBot:
+  negative_responses = ("nothing", "don't", "stop", "sorry")
+
+  exit_commands = ("quit", "pause", "exit", "goodbye", "bye", "later")
+
+  def __init__(self):
+    pass
+
+  def welcome(self):
+    name = input("Hi, I'm a customer support representative. Welcome to Codecademy Bank. Before we can help you, I need some information from you. What is your first name and last name? ")
+    
+    will_help = input(f"Ok {name}, what can I help you with? ")
+    
+    if will_help in self.negative_responses:
+      print("Ok, have a great day!")
+      return
+    
+    self.handle_conversation(will_help)
+  
+  def handle_conversation(self, reply):
+    while not self.make_exit(reply):
+      reply = input("How can I help you? ")
+      
+  def make_exit(self, reply):
+    for item in self.exit_commands:
+      if item in reply:
+        print("Ok, have a great day!")
+        return True
+    return False
+    
+# Create a SupportBot instance
+SupportConversation = SupportBot()
+# Call the .welcome() method
+SupportConversation.welcome()
+
+
+
