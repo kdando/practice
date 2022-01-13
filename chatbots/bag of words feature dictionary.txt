@@ -1,0 +1,21 @@
+from preprocessing import preprocess_text
+# Define text_to_bow() below:
+
+
+
+def text_to_bow(some_text):
+  bow_dictionary = {}
+  tokens = preprocess_text(some_text)
+  for item in tokens:
+    if item in bow_dictionary:
+      bow_dictionary[item] += 1
+    else:
+      bow_dictionary[item] = 1
+  return bow_dictionary
+
+
+print(text_to_bow("I love fantastic flying fish. These flying fish are just ok, so maybe I will find another few fantastic fish..."))
+
+####
+Function tokenises a text, then for each token it checks if that token is present in the box_dictionary object. if it is, the VALUE is iterated by 1. If not, this is the first appearance, so the VALUE of that token in the dictionary is set to 1. Basically, this function counts the appearances of a token.
+####
