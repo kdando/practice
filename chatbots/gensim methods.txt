@@ -1,0 +1,35 @@
+import gensim
+from nltk.corpus import stopwords
+from romeo_juliet import romeo_and_juliet
+
+# load stop words
+stop_words = stopwords.words('english')
+
+# preprocess text
+romeo_and_juliet_processed = [[word for word in romeo_and_juliet.lower().split() if word not in stop_words]]
+
+# view inner list of romeo_and_juliet_processed
+print(romeo_and_juliet_processed[0][0:20])
+
+# train word embeddings model
+model = gensim.models.Word2Vec(romeo_and_juliet_processed, size=100)
+
+# view vocabulary
+vocabulary = list(model.wv.vocab.items())
+
+
+# similar to romeo - GIVE THE topn WORDS CLOSEST TO first arg
+similar_to_romeo = model.most_similar("romeo", topn=20)
+print(similar_to_romeo)
+
+# one is not like the others - GIVE TERM FURTHEST AWAY FROM OTHERS
+not_star_crossed_lover = model.doesnt_match(["romeo", "juliet", "mercutio"])
+print(not_star_crossed_lover)
+
+###
+Final (two) outputs:
+###
+
+[('thou', 0.9996553659439087), ('romeo.', 0.9996122121810913), ('thy', 0.9995646476745605), ('hath', 0.9995260238647461), ('shall', 0.9995230436325073), ('juliet.', 0.9995211362838745), ('nurse.', 0.9995134472846985), ('thee', 0.9995057582855225), ('enter', 0.9994938969612122), ('lady', 0.9994717836380005), ('good', 0.9994573593139648), ('go', 0.9994499683380127), ('death', 0.9994495511054993), ('friar', 0.9994411468505859), ('give', 0.9994348287582397), ('me,', 0.9994182586669922), ('come,', 0.9994122982025146), ('lawrence.', 0.9994072914123535), ('i’ll', 0.9994058609008789), ('capulet.', 0.9993903636932373)]
+
+juliet
