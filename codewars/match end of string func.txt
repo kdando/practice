@@ -1,0 +1,8 @@
+
+def solution(string, ending):
+    end = ending[::-1]
+    newstr = string[::-1]
+    for x in range(len(end)):
+        if not (end[x] == newstr[x]):
+            return False
+    return True
