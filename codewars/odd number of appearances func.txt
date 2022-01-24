@@ -1,0 +1,5 @@
+def find_it(seq):
+    for x in seq:
+        appearances = seq.count(x)
+        if not appearances % 2 == 0:
+            return x

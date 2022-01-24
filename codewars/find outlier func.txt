@@ -1,0 +1,13 @@
+def find_outlier(integers):
+    odds = 0
+    evens = 0
+    for x in integers:
+        if x % 2 == 0:
+            evens += 1
+        else:
+            odds += 1
+    if evens > odds:
+        outlier = [ x for x in integers if not x % 2 == 0 ]
+    else:
+        outlier = [ x for x in integers if x % 2 == 0 ]
+    return outlier[0]
