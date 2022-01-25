@@ -1,0 +1,14 @@
+import string
+punc = string.punctuation
+
+def pig_it(text):
+    arr = text.split(" ")
+    new_text = ""
+    for word in arr:
+        if not word in punc:
+            new_word = word[1:] + word[0] + "ay"
+            new_text += new_word + " "
+        else:
+            new_text += word
+    new_text = new_text.strip()
+    return new_text
