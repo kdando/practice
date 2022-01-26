@@ -1,0 +1,17 @@
+def first_non_repeating_letter(string):
+    # eliminate empty strings
+    if string == "" or string == None:
+        return ""
+    # make list w all chars lowercase, filter for unique chars
+    arr = list(string.lower())
+    nonrep = [ x for x in arr if arr.count(x) == 1 ]
+    # eliminate strings w no unique chars
+    if len(nonrep) == 0:
+        return ""
+    # check unique char is set to the right case, then return it
+    if nonrep[0] in string:
+        first = string.index(nonrep[0])
+        return string[first]
+    else:
+        first = string.index(nonrep[0].upper())
+        return string[first]
