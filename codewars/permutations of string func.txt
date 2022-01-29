@@ -1,0 +1,11 @@
+import itertools
+
+def permutations(string):
+    if len(string) == 1:
+        return list(string)
+    results = list(itertools.permutations(string))
+# permutation method outputs tuples so we join them into string items:
+    results = [ "".join(x) for x in results ]
+# convert to a dictionary to remove duplicates, then back to list:
+    results = list(dict.fromkeys(results))
+    return results
