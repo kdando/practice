@@ -1,0 +1,5 @@
+def to_jaden_case(string):
+    a = []
+    for word in string.split(" "):
+        a.append(word.capitalize())
+    return " ".join(a)

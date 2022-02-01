@@ -1,0 +1,7 @@
+def binary_array_to_number(arr):
+    new_arr = [ x * (2 ** i) for i, x in enumerate(reversed(arr)) ]
+    return sum(new_arr)
+
+###
+Formula to convert binary to decimal is = right to left, 1 or 0 times 2 to the power of the index position (counting from the right). (Which is why we reverse the array)
+###

@@ -1,0 +1,7 @@
+def accum(s):
+    new_s = ""
+    for x in range(len(s)):
+        if not x == 0:
+            new_s += "-"
+        new_s += s[x].upper() + (s[x].lower() * x)
+    return new_s
