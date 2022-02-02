@@ -1,0 +1,15 @@
+def count_bits(n):
+    bin = ""
+
+#convert to binary
+    while not n <= 0:
+        bin += str(n % 2)
+        n = int(n/2)
+
+#sum of bits
+    res = 0
+    for x in bin:
+        if int(x) > 0:
+            res += 1
+    return res
+ 
