@@ -1,0 +1,4 @@
+def number(bus_stops):
+    return sum([ stop[0]-stop[1] for stop in bus_stops ])
+
+###arg is a list of lists representing each stop. in each sublist first item is people getting on and second is people getting off.###
