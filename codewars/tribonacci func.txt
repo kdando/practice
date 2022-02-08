@@ -1,0 +1,27 @@
+def tribonacci(signature, n):
+    trib_list = []
+    if n == 0:
+        return trib_list
+    elif n == 1:
+        if len(signature) > 1:
+            trib_list.append(signature[0])
+            return trib_list
+        else:
+            return signature
+    elif n == 2:
+        trib_list.append(signature[0])
+        trib_list.append(signature[1])
+        return trib_list
+    elif len(signature) == n:
+        return signature
+    else:
+        trib_list = signature
+        while len(trib_list) < n:
+            newnum = trib_list[-1] + trib_list[-2] + trib_list[-3]
+            trib_list.append(newnum)
+    return trib_list
+
+
+###
+Returns the first n numbers of a 'tribonacci' sequence built from signature
+###

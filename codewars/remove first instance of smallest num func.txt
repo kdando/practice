@@ -1,0 +1,5 @@
+def remove_smallest(numbers):
+    arr = numbers[:]
+    if len(arr) >= 1:
+        del arr[arr.index(min(arr))]
+    return arr
