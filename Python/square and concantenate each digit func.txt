@@ -1,0 +1,6 @@
+def square_digits(num):
+    result = ""
+    arr = list(map(lambda x: int(x), str(num)))
+    for n in arr:
+        result += str(int(n) ** 2)
+    return int(result)
