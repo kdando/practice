@@ -1,0 +1,7 @@
+def printer_error(s):
+    valid = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"]
+    count = 0
+    for letter in s:
+        if not letter in valid:
+            count += 1
+    return str(count) + "/" + str(len(s))
