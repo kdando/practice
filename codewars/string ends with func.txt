@@ -1,0 +1,6 @@
+
+def solution(string, ending):
+    return ending in string[-len(ending):]
+
+### checks if the string arg ends with the ending arg ###
+# Notice you can use variables and expressions in slice notation #
