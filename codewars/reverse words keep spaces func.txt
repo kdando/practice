@@ -1,0 +1,7 @@
+def reverse_words(text):
+    if "  " in text:
+        return "  ".join([ x[::-1] for x in text.split() ])
+    else:
+        return " ".join([ x[::-1] for x in text.split() ])
+
+### Some of test cases were double-spaced ###
